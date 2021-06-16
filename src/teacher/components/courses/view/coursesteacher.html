@@ -1,0 +1,266 @@
+<div data-bind="visible: isVisible">
+    <h3 class="page-header">Курсы</h3>
+    <!--start cameras section-->
+    
+    <div class="col-xs-12" id="coursesList" data-bind="visible:coursesPanel()">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-table"></i>
+                    <span>Ваши курсы</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <table class="table table-striped table-datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="dataTablesForEach: { data: courses, dataTableOptions: { language: nlsdataTable } }">
+                        <tr data-bind="style: {'background-color':'#F9F9F9'}">
+                            <td data-bind="text: id" ></td>
+                            <td data-bind="text: course_name"></td>
+                            <td>
+                                <button data-bind="click: $parent.goToCourse" class="btn btn-primary btn-xs" style="width:20px"><span class="glyphicon glyphicon-book"></span></button>
+                            </td>
+                            <td>
+                                <button data-bind="click: $parent.showGroupsCourse" class="btn btn-danger btn-xs" data-toggle="modal" ><span style="margin:3px;" class="glyphicon glyphicon-user"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12" id="tasksList" data-bind="visible:tasksPanel()">
+        <button type="button" class="btn btn-info btn-sm" data-bind="click: backToCourses">
+            Назад к курсам
+        </button>
+        <button type="button" class="btn btn-info btn-sm" data-bind="click: addNewTask">
+            Добавить новое задание
+        </button>
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-table"></i>
+                    <span>Ваши задания</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <table class="table table-striped table-datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th>Срок сдачи</th>
+                            <th>Создано</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="dataTablesForEach: { data: tasks, dataTableOptions: { language: nlsdataTable } }">
+                        <tr data-bind="style: {'background-color':'#F9F9F9'}">
+                            <td data-bind="text: id"></td>
+                            <td data-bind="text: name"></td>
+                            <td data-bind="text: deadline"></td>
+                            <td data-bind="text: created_on"></td>
+                            <td>
+                                <button data-bind="click: $parent.showSubmissions" class="btn btn-danger btn-xs" data-toggle="modal" ><span style="margin:3px;" class="glyphicon glyphicon-user"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th>Срок сдачи</th>
+                            <th>Создано</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="addnewtask" data-bind="visible:addTaskPanel()" style="width:80%">
+        <h3 class="text-primary text-center">Добавление задания</h3>
+        <div id="taskEdit" data-bind="css: { disabledDiv: false }">
+            <div class="form-group">
+                <label for="addnewtask-name">Название типа <span style="color:red"> *</span></label>
+                <input required="true" type="text" class="form-control"
+                       id="addnewtask-name" placeholder="Название типа">
+            </div>
+            <div class="form-group">
+                <label for="addnewtask-name">Срок сдачи <span style="color:red"> *</span></label>
+                <input required="true" type="date" class="form-control"
+                       id="addnewtask-deadline" placeholder="Название типа">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-bind="click: cancelAdd">Отменить</button>
+            <button type="button" class="btn btn-info">Сохранить</button>
+        </div>
+    </div>
+    <div class="col-xs-12" id="groupCourseList" data-bind="visible:groupCoursePanel()">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-table"></i>
+                    <span>Группы по курсу</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <table class="table table-striped table-datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="dataTablesForEach: { data: groupCourse, dataTableOptions: { language: nlsdataTable } }">
+                        <tr data-bind="style: {'background-color':'#F9F9F9'}">
+                            <td data-bind="text: group_id" ></td>
+                            <td data-bind="text: group_name"></td>
+                            <td>
+                                <button data-bind="click: $parent.showStudents" class="btn btn-danger btn-xs" data-toggle="modal" ><span style="margin:3px;" class="glyphicon glyphicon-user"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Название</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12" id="tasksList" data-bind="visible:studentsPanel()">
+        <button type="button" class="btn btn-info btn-sm" data-bind="click: backToCourses">
+            Назад к курсам
+        </button>
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-table"></i>
+                    <span>Студенты курса</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <table class="table table-striped table-datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Имя</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="dataTablesForEach: { data: students, dataTableOptions: { language: nlsdataTable } }">
+                        <tr data-bind="style: {'background-color':'#F9F9F9'}">
+                            <td data-bind="text: id"></td>
+                            <td data-bind="text: name"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Имя</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12" id="tasksList" data-bind="visible:submissionsPanel()">
+        <button type="button" class="btn btn-info btn-sm" data-bind="click: backToCourses">
+            Назад к курсам
+        </button>
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-table"></i>
+                    <span>Работы</span>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <table class="table table-striped table-datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Имя</th>
+                            <th>Работа</th>
+                            <th>Оценка</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="dataTablesForEach: { data: submissions, dataTableOptions: { language: nlsdataTable } }">
+                        <tr data-bind="style: {'background-color':'#F9F9F9'}">
+                            <td data-bind="text: id"></td>
+                            <td data-bind="text: studentname"></td>
+                            <td ><a href=# data-bind="attr: { href: document},text: document"></a ></a></td>
+                            <td data-bind="text: grade"></td>
+                            <td>
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add-submission-modal"><span class="glyphicon glyphicon-plus"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Имя</th>
+                            <th>Работа</th>
+                            <th>Оценка</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="modal fade" id="add-submission-modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Оценить работу</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="addnewwork-name">Комментарий</label>
+                                <input type="text" class="form-control"
+                                       id="addnewwork-name" placeholder="Комментарий" />
+                            </div>
+                            <div class="form-group">
+                                <label for="addnewwork-name">Оценка</label>
+                                <input type="number" class="form-control"
+                                       id="addnewwork-name" placeholder="Оценка" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                        <button type="button" class="btn btn-primary" data-bind="click: onSubmitMark" data-dismiss="modal">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!--end-->

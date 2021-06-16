@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="Scripts/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    <link href="src/style/admstyle.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="Scripts/bootstrap/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="Scripts/bootstrap/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="Scripts/kendocore/css/kendo.common.min.css" />
+    <link rel="stylesheet" href="Scripts/kendocore/css/kendo.bootstrap.min.css" />
+    <link rel="stylesheet" href="Scripts/kendocore/css/kendo.bootstrap.mobile.min.css" />
+    
+    <link href="src/style/style.css" rel="stylesheet" />
+    <link href="Scripts/bootstrap/css/bootstrap-slider.css" rel="stylesheet" />
+    <script data-main="src/app/requireAdmCfg" type="text/javascript" src="Scripts/require.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container-fluid expanded-panel">
+            <div class="row">
+                <div id="logo" class="col-xs-12 col-sm-2">
+                    <a href="index.html">LMS 2000</a>
+                </div>
+                <div id="top-panel" class="col-xs-12 col-sm-10">
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="main" class="container-fluid">
+        <div class="row">
+            <div id="sidebar-left" class="col-xs-2 col-sm-2">
+                <ul class="nav main-menu">
+                    <li>
+                        <a class="ajax-link" href="" mname="courses">
+                            <i class="fa fa-book"></i>
+                            <span class="hidden-xs">My Courses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="ajax-link" href="" mname="tasks">
+                            <i class="fa fa-graduation-cap"></i>
+                            <span class="hidden-xs">Tasks</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="content" class="col-xs-12 col-sm-10">
+                <div class="preloader">
+                    <img src="src/images/main/getdata.gif" class="devoops-getdata" alt="preloader" />
+                </div>
+                <div id="ajax-content">
+                    <tasks-stg></tasks-stg>
+                    <courses-stg></courses-stg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="initmodule"></div>
+    <span id="adminpopupNotification"></span>
+</body>
+</html>
